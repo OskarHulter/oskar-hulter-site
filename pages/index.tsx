@@ -1,9 +1,16 @@
+import { FC } from 'react'
+import { GetStaticProps } from 'next'
+import getPosts from '@utils/getPosts'
 import Layout from '@components/Layout'
 import PostList from '@components/PostList'
+import { WebpackContext } from 'types/Blog'
 
-import getPosts from '@utils/getPosts'
 
-const Index = ({ posts, title, description, ...props }) => {
+const Index: FC<Props> = ({
+  posts,
+  title = 'default title',
+  description = 'default description',
+}) => {
   return (
     <>
       <Layout pageTitle={title} description={description}>
@@ -21,7 +28,7 @@ const Index = ({ posts, title, description, ...props }) => {
           <a href="https://github.com/cassidoo/next-netlify-blog-starter">
             here
           </a>
-          , and a tutorial on how to build it {` `}
+          , and a tutorial on how to build it {' '}
           <a href="https://url.netlify.com/ByVW0bCF8">here</a>.
         </p>
       </Layout>
@@ -35,12 +42,16 @@ const Index = ({ posts, title, description, ...props }) => {
   )
 }
 
-export default Index
+type Props = {
+  posts: []
+  title: string
+  description: string
+}
 
-export async function getStaticProps() {
-  const configData = await import(`../siteconfig.json`)
+export const getStaticProps: GetStaticProps = async () => {
+  const configData = await import('../siteconfig.json')
 
-  const posts = ((context) => {
+  const posts = ((context: WebpackContext) => {
     return getPosts(context)
   })(require.context('../posts', true, /\.md$/))
 
@@ -52,3 +63,5 @@ export async function getStaticProps() {
     },
   }
 }
+
+export default Index

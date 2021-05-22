@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import Link from 'next/link'
 
-export default function Header() {
+const Header: FC = () => {
   return (
     <>
       <header className="header">
@@ -40,3 +41,5 @@ export default function Header() {
     </>
   )
 }
+
+export default Header

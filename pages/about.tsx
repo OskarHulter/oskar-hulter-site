@@ -1,6 +1,8 @@
+import { FC } from 'react'
+import { GetStaticProps } from 'next'
 import Layout from '@components/Layout'
 
-const About = ({ title, description, ...props }) => {
+const About: FC<Props> = ({ title, description }) => {
   return (
     <>
       <Layout pageTitle={`${title} | About`} description={description}>
@@ -16,7 +18,7 @@ const About = ({ title, description, ...props }) => {
           <a href="https://github.com/cassidoo/next-netlify-blog-starter">
             repo here.
           </a>{' '}
-          If you'd like to build it yourself,{' '}
+          Build it yourself,{' '}
           <a href="https://url.netlify.com/ByVW0bCF8">
             here is a tutorial on how to do so
           </a>
@@ -32,10 +34,15 @@ const About = ({ title, description, ...props }) => {
   )
 }
 
+type Props = {
+  title: string
+  description: string
+}
+
 export default About
 
-export async function getStaticProps() {
-  const configData = await import(`../siteconfig.json`)
+export const getStaticProps: GetStaticProps = async () => {
+  const configData = await import('../siteconfig.json')
 
   return {
     props: {

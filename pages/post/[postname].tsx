@@ -1,11 +1,13 @@
+import { FC } from 'react'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
 import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
-
-import Layout from '@components/Layout'
 import getSlugs from '@utils/getSlugs'
+import Layout from '@components/Layout'
+import { FrontMatter, WebpackContext } from 'types/Blog'
 
-export default function BlogPost({ siteTitle, frontmatter, markdownBody }) {
+const BlogPost: FC<Props> = ({ siteTitle, frontmatter, markdownBody }) => {
   if (!frontmatter) return <></>
 
   return (
@@ -27,10 +29,13 @@ export default function BlogPost({ siteTitle, frontmatter, markdownBody }) {
             />
           )}
           <div>
-            <ReactMarkdown source={markdownBody} />
+            <ReactMarkdown>
+              {markdownBody}
+            </ReactMarkdown>
           </div>
         </article>
       </Layout>
+
       <style jsx>{`
         article {
           width: 100%;
@@ -55,11 +60,19 @@ export default function BlogPost({ siteTitle, frontmatter, markdownBody }) {
   )
 }
 
-export async function getStaticProps({ ...ctx }) {
+type Props = {
+  siteTitle: string
+  frontmatter: FrontMatter
+  markdownBody: string
+}
+
+
+
+export const getStaticProps: GetStaticProps = async ({ ...ctx }) => {
   const { postname } = ctx.params
 
   const content = await import(`../../posts/${postname}.md`)
-  const config = await import(`../../siteconfig.json`)
+  const config = await import('../../siteconfig.json')
   const data = matter(content.default)
 
   return {
@@ -71,15 +84,17 @@ export async function getStaticProps({ ...ctx }) {
   }
 }
 
-export async function getStaticPaths() {
-  const blogSlugs = ((context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const blogSlugs = ((context: WebpackContext) => {
     return getSlugs(context)
   })(require.context('../../posts', true, /\.md$/))
 
-  const paths = blogSlugs.map((slug) => `/post/${slug}`)
+  const paths = blogSlugs.map(slug => `/post/${slug}`)
 
   return {
     paths, // An array of path names, and any params
     fallback: false, // so that 404s properly appear if something's not matching
   }
 }
+
+export default BlogPost

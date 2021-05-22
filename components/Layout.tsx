@@ -1,8 +1,9 @@
+import { FC } from 'react'
 import Head from 'next/head'
-
 import Header from './Header'
 
-export default function Layout({ children, pageTitle, description, ...props }) {
+
+const Layout: FC<Props> = ({ children, pageTitle, description }) => {
   return (
     <>
       <Head>
@@ -70,3 +71,10 @@ export default function Layout({ children, pageTitle, description, ...props }) {
     </>
   )
 }
+
+type Props = {
+  pageTitle: string
+  description?: string
+}
+
+export default Layout

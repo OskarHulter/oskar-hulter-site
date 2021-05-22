@@ -1,7 +1,9 @@
+import { FC } from 'react'
 import Link from 'next/link'
+import { Post } from 'types/Blog'
 
-export default function PostList({ posts }) {
-  if (posts === 'undefined') return null
+const PostList: FC<Props> = ({ posts }) => {
+  //if (posts === 'undefined') return null
 
   return (
     <div>
@@ -11,7 +13,7 @@ export default function PostList({ posts }) {
           posts.map((post) => {
             return (
               <li key={post.slug}>
-                {post.frontmatter.date}: {` `}
+                {post.frontmatter.date}: {' '}
                 <Link href={{ pathname: `/post/${post.slug}` }}>
                   <a>{post?.frontmatter?.title}</a>
                 </Link>
@@ -22,3 +24,9 @@ export default function PostList({ posts }) {
     </div>
   )
 }
+
+type Props = {
+  posts: Post[]
+}
+
+export default PostList
