@@ -3,13 +3,13 @@ import { GetStaticProps } from 'next'
 import getPosts from '@utils/getPosts'
 import Layout from '@components/Layout'
 import PostList from '@components/PostList'
-import { WebpackContext } from 'types/Blog'
+import { Post, WebpackContext } from 'types/Blog'
 
 
 const Index: FC<Props> = ({
   posts,
-  title = 'default title',
-  description = 'default description',
+  title = 'Oskar Hulter\'s Website',
+  description = 'Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.',
 }) => {
   return (
     <>
@@ -43,7 +43,7 @@ const Index: FC<Props> = ({
 }
 
 type Props = {
-  posts: []
+  posts: Post[]
   title: string
   description: string
 }

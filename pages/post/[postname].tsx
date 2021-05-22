@@ -1,25 +1,26 @@
 import { FC } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import ReactMarkdown from 'react-markdown'
-import Link from 'next/link'
 import matter from 'gray-matter'
 import getSlugs from '@utils/getSlugs'
 import Layout from '@components/Layout'
+import MDX from '@components/MDX'
+import Button from '@components/Button'
 import { FrontMatter, WebpackContext } from 'types/Blog'
 
-const BlogPost: FC<Props> = ({ siteTitle, frontmatter, markdownBody }) => {
+
+const BlogPost: FC<Props> = ({
+  siteTitle = 'Oskar Hulter\'s Web Dev Blog',
+  frontmatter,
+  markdownBody,
+}) => {
   if (!frontmatter) return <></>
 
   return (
     <>
-      <Layout pageTitle={`${siteTitle} | ${frontmatter.title}`}>
-        <div className="back">
-          ←{' '}
-          <Link href="/">
-            <a>Back to post list</a>
-          </Link>
-        </div>
+      <Layout pageTitle={`${frontmatter.title} | ${siteTitle} `}>
+        <Button backArrow={true}/>
         <article>
+
           <h1>{frontmatter.title}</h1>
           {frontmatter.hero_image && (
             <img
@@ -28,11 +29,9 @@ const BlogPost: FC<Props> = ({ siteTitle, frontmatter, markdownBody }) => {
               alt={frontmatter.title}
             />
           )}
-          <div>
-            <ReactMarkdown>
-              {markdownBody}
-            </ReactMarkdown>
-          </div>
+
+          <MDX markdownBody={markdownBody} />
+
         </article>
       </Layout>
 
@@ -42,18 +41,13 @@ const BlogPost: FC<Props> = ({ siteTitle, frontmatter, markdownBody }) => {
           max-width: 1200px;
         }
         h1 {
-          font-size: 3rem;
+          font-size: 4rem;
         }
         h3 {
           font-size: 2rem;
         }
         .hero {
           width: 100%;
-        }
-        .back {
-          width: 100%;
-          max-width: 1200px;
-          color: #00a395;
         }
       `}</style>
     </>
@@ -65,7 +59,6 @@ type Props = {
   frontmatter: FrontMatter
   markdownBody: string
 }
-
 
 
 export const getStaticProps: GetStaticProps = async ({ ...ctx }) => {

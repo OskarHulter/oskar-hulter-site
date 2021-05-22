@@ -11,6 +11,7 @@ export type FrontMatter = {
 }
 
 export type DocumentFrontMatter = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any
   content: string
 }
@@ -19,6 +20,11 @@ export type Post = {
   slug: string
   frontmatter?: FrontMatter
   markdownBody?: string
+}
+
+export type RestProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [_: string]: any
 }
 
 export type WebpackContext = __WebpackModuleApi.RequireContext

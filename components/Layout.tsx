@@ -1,30 +1,17 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import Header from './Header'
+import Header from '@components/Header/Header'
 
 
-const Layout: FC<Props> = ({ children, pageTitle, description }) => {
-  return (
-    <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charSet="utf-8" />
-        <meta name="Description" content={description}></meta>
-        <title>{pageTitle}</title>
-      </Head>
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800;900&display=swap');
-
-        html,
-        body {
-          margin: 0;
-          padding: 0;
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-            Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-            sans-serif;
-          color: #445566;
-        }
-
+const Layout: FC<Props> = ({ pageTitle, description, children }) =>
+  <>
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charSet="utf-8" />
+      <meta name="Description" content={description}></meta>
+      <title>{pageTitle}</title>
+    </Head>
+    <style jsx global>{`
         h1,
         h2,
         h3,
@@ -32,10 +19,6 @@ const Layout: FC<Props> = ({ children, pageTitle, description }) => {
         h5,
         h6 {
           font-weight: bold;
-        }
-
-        a {
-          color: #00a395;
         }
 
         .content {
@@ -61,16 +44,14 @@ const Layout: FC<Props> = ({ children, pageTitle, description }) => {
           height: 1rem;
         }
       `}</style>
-      <section className="layout">
-        <Header />
-        <div className="content">{children}</div>
-      </section>
-      <footer>
-        Built with <img src="/netliheart.svg" alt="Netlify Heart" /> for you
-      </footer>
-    </>
-  )
-}
+    <section className="layout">
+      <Header />
+      <div className="content">{children}</div>
+    </section>
+    <footer>
+      Built with <img src="/netliheart.svg" alt="Netlify Heart" /> for you
+    </footer>
+  </>
 
 type Props = {
   pageTitle: string
