@@ -48,6 +48,9 @@ const textStyles = {
 
 const styles = {
   global: props => ({
+    'html': {
+      scrollBehavior: 'smooth'
+    },
     'body': {
       fontFamily: 'body',
       color: mode('gray.800', 'whiteAlpha.900')(props),
@@ -57,9 +60,11 @@ const styles = {
         color: '#00a395'
       }
     },
+    'main': {
+      h: '100%'
+    },
     'section':{
-      minHeight: '200vh',
-      w: '100%',
+      w: '100vw',
       display: 'flex',
       direction: 'column',
       alignItems: 'center',
@@ -77,7 +82,11 @@ const styles = {
   })
 }
 
-const theme = extendTheme({ styles, colors, fonts, textStyles })
+const config = {
+  useSystemColorMode: true
+}
+
+const theme = extendTheme({ styles, colors, fonts, textStyles, config })
 
 const ThemeProvider: FC = ({ children }) =>
   <ChakraProvider theme={theme}>

@@ -1,10 +1,10 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import matter from 'gray-matter'
+import { Heading, Image } from '@chakra-ui/react'
 import getSlugs from '@utils/getSlugs'
-import Layout from '@components/Layout'
+import Layout from '@components/Layout/Layout'
 import MDX from '@components/MDX'
-import Button from '@components/Button'
 import { FrontMatter, WebpackContext } from 'types/Blog'
 
 
@@ -12,41 +12,28 @@ const BlogPost: FC<Props> = ({
   siteTitle = 'Oskar Hulter\'s Web Dev Blog',
   frontmatter,
   markdownBody,
-}) => {
-  if (!frontmatter) return <></>
-
-  return (
-    <>
+}) => 
+  <>
+    {!frontmatter ?
+      null :
       <Layout pageTitle={`${frontmatter.title} | ${siteTitle} `}>
-        <Button backArrow={true}/>
         <article>
 
-          <h1>{frontmatter.title}</h1>
-          {frontmatter.hero_image && (
-            <img
-              src={frontmatter.hero_image}
-              className="hero"
-              alt={frontmatter.title}
-            />
-          )}
+          <header>
+            {frontmatter.hero_image && 
+              <Image
+                objectFit='cover'
+                src={frontmatter.hero_image}
+                alt={frontmatter.title}
+              />}
+            <Heading as='h2'>{frontmatter.title}</Heading>
+          </header>
 
           <MDX markdownBody={markdownBody} />
 
         </article>
-      </Layout>
-
-      <style jsx>{`
-        article {
-          width: 100%;
-          max-width: 1200px;
-        }
-        .hero {
-          width: 100%;
-        }
-      `}</style>
-    </>
-  )
-}
+      </Layout>}
+  </>
 
 type Props = {
   siteTitle: string

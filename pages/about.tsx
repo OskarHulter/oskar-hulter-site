@@ -1,38 +1,36 @@
 import { FC } from 'react'
 import { GetStaticProps } from 'next'
-import Layout from '@components/Layout'
+import Layout from '@components/Layout/Layout'
+import { Heading, Text } from '@chakra-ui/layout'
 
-const About: FC<Props> = ({ title, description }) => {
-  return (
-    <>
-      <Layout pageTitle={`${title} | About`} description={description}>
-        <h1 className="title">Welcome to this demo blog!</h1>
+const AboutPage: FC<Props> = ({ title, description }) => 
+  <>
+    <Layout pageTitle={`${title} | About`} description={description}>
+      <Heading>Welcome to this demo blog!</Heading>
 
-        <p className="description">
+      <Text>
           This is a simple blog built with Next, easily deployable on{' '}
-          <a href="https://url.netlify.com/r1j6ybSYU">Netlify</a>.
-        </p>
+        <a href="https://url.netlify.com/r1j6ybSYU">Netlify</a>.
+      </Text>
 
-        <p>
+      <Text>
           You can check out the{' '}
-          <a href="https://github.com/cassidoo/next-netlify-blog-starter">
+        <a href="https://github.com/cassidoo/next-netlify-blog-starter">
             repo here.
-          </a>{' '}
+        </a>{' '}
           Build it yourself,{' '}
-          <a href="https://url.netlify.com/ByVW0bCF8">
+        <a href="https://url.netlify.com/ByVW0bCF8">
             here is a tutorial on how to do so
-          </a>
+        </a>
           !
-        </p>
+      </Text>
 
-        <p>
+      <Text>
           This project includes a basic layout and header, base styles, dynamic
           routing with getStaticPaths, and posts saved as Markdown.
-        </p>
-      </Layout>
-    </>
-  )
-}
+      </Text>
+    </Layout>
+  </>
 
 type Props = {
   title: string
@@ -50,4 +48,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default About
+export default AboutPage

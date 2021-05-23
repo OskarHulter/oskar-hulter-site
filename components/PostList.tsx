@@ -2,24 +2,19 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { Post } from 'types/Blog'
 
-const PostList: FC<Props> = ({ posts }) => (
-  <div>
-    {!posts && <div>No posts!</div>}
-    <ul>
-      {posts &&
-        posts.map((post) => {
-          return (
-            <li key={post.slug}>
-              {post.frontmatter.date}: {' '}
-              <Link href={{ pathname: `/post/${post.slug}` }}>
-                <a>{post?.frontmatter?.title}</a>
-              </Link>
-            </li>
-          )
-        })}
-    </ul>
-  </div>
-)
+
+const PostList: FC<Props> = ({ posts }) => !posts ?
+  <div>No posts!</div> :
+  <ul>
+    {posts.map(post =>
+      <li key={post.slug}>
+        {post.frontmatter.date}: {' '}
+        <Link href={{ pathname: `/post/${post.slug}` }}>
+          <a>{post?.frontmatter?.title}</a>
+        </Link>
+      </li>
+    )}
+  </ul>
 
 type Props = {
   posts: Post[]

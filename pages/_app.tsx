@@ -1,5 +1,5 @@
+import Store from '@components/Store/Store'
 import type { AppProps as NextAppProps } from 'next/app'
-import Store from '../components/Store'
 
 
 const MyApp = ({ Component, pageProps }: AppProps<CustomPageProps>): JSX.Element =>
