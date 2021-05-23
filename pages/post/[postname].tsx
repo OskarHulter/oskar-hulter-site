@@ -40,12 +40,6 @@ const BlogPost: FC<Props> = ({
           width: 100%;
           max-width: 1200px;
         }
-        h1 {
-          font-size: 4rem;
-        }
-        h3 {
-          font-size: 2rem;
-        }
         .hero {
           width: 100%;
         }

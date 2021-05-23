@@ -1,15 +1,24 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import Link from 'next/link'
+import { Stack, Box } from '@chakra-ui/react'
 
 const Navigation: FC = () => (
   <>
     <nav className="nav" role="navigation" aria-label="main navigation">
-      <Link href="/">
-        <a>Blog Template</a>
-      </Link>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
+      <Stack direction={['column', 'row']} spacing="24px">
+        <Box w="40px" h="40px" bg="green.200">
+          <Link href="/">
+            <a>Blog Template</a>
+          </Link>
+        </Box>
+        <Box w="40px" h="40px" bg="tomato">
+          <Link href="/about">
+            <a>About</a>
+          </Link>
+        </Box>
+      </Stack>
+      
+      
     </nav>
     < style jsx> {`
           nav {

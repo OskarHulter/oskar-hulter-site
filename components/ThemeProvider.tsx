@@ -29,6 +29,23 @@ const fonts = {
   body: 'IBM Plex Sans',
 }
 
+const textStyles = {
+  h1: {
+    // you can also use responsive styles
+    fontSize: ['48px', '72px'],
+    fontWeight: 'bold',
+    lineHeight: '110%',
+    letterSpacing: '-2%',
+  },
+  h2: {
+    fontSize: ['36px', '48px'],
+    fontWeight: 'semibold',
+    lineHeight: '110%',
+    letterSpacing: '-1%',
+  },
+}
+
+
 const styles = {
   global: props => ({
     'body': {
@@ -38,8 +55,16 @@ const styles = {
       lineHeight: 'base',
       a: {
         color: '#00a395'
-      },
-
+      }
+    },
+    'section':{
+      minHeight: '200vh',
+      w: '100%',
+      display: 'flex',
+      direction: 'column',
+      alignItems: 'center',
+      lineHeight: '1.7',
+      bg: 'linear-gradient( to top, red  0%, green 100%)',
     },
     '*::placeholder': {
       color: mode('gray.400', 'whiteAlpha.400')(props),
@@ -52,8 +77,7 @@ const styles = {
   })
 }
 
-
-const theme = extendTheme({ styles, colors, fonts })
+const theme = extendTheme({ styles, colors, fonts, textStyles })
 
 const ThemeProvider: FC = ({ children }) =>
   <ChakraProvider theme={theme}>

@@ -39,11 +39,9 @@ type Props = {
   description: string
 }
 
-export default About
-
 export const getStaticProps: GetStaticProps = async () => {
   const configData = await import('../siteconfig.json')
-
+  
   return {
     props: {
       title: configData.default.title,
@@ -51,3 +49,5 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
+
+export default About

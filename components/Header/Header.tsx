@@ -1,9 +1,11 @@
 import { FC } from 'react'
+import HamburgerMenu from '@components/Header/HamburgerMenu'
 import Navigation from './Navigation'
 
 const Header: FC = () => (
   <>
     <header className="header">
+      <HamburgerMenu />
       <Navigation />
     </header>
     <style jsx>{`
