@@ -1,18 +1,18 @@
-import React, { FC } from 'react'
 import { IconButton } from '@chakra-ui/button'
 import { Icon } from '@components/SocialButtons'
 
-export const SocialButton: FC<Props> = ({ icon }) => 
-  <IconButton
-    href={icon.href}
-    aria-label='social-media-link'
-    target="_blank"
-    rel="noreferrer"
-    icon={icon.icon}
-  />
 
-type Props = {
-  icon: Icon
+export function SocialButton({ icon }: { icon: Icon}) {
+
+  return (
+    <IconButton
+      href={icon.href}
+      aria-label='social-media-link'
+      target="_blank"
+      rel="noreferrer"
+      icon={icon.icon}
+    />
+  )
 }
 
 /*

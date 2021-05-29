@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
 import Link from 'next/link'
-import { Box, Button, Stack, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
+import { Box, Button, Stack, useDisclosure } from '@chakra-ui/react'
 
-const Navigation: FC = () => {
+
+export function Navigation() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const handleToggle = () => (isOpen ? onClose() : onOpen())
 
@@ -38,12 +38,10 @@ const Navigation: FC = () => {
     >
       <Button
         variant='outline'
-        _hover={{ bg: 'teal.700', borderColor: 'teal.700' }}
+        _hover={{ bg: 'brand.700', borderColor: 'brand.900' }}
       >
         Contact
       </Button>
     </Box>
   </>
 }
-
-export default Navigation

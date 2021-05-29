@@ -1,11 +1,9 @@
-import React, { FC } from 'react'
-import { Flex, Heading, IconButton, useColorMode } from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import Navigation from '@components/Layout/Header/Navigation'
+import { Flex, Heading } from '@chakra-ui/react'
+import { DarkModeToggle } from '@components/Layout/Header/DarkModeToggle'
+import { Navigation } from '@components/Layout/Header/Navigation'
 
-const Header: FC = ({ ...props }) => {
 
-  const { colorMode, toggleColorMode } = useColorMode()
+export function Header() {
 
   return (
     <Flex
@@ -14,9 +12,7 @@ const Header: FC = ({ ...props }) => {
       justify='space-between'
       wrap='wrap'
       padding={6}
-      bg='teal.500'
-      color='white'
-      {...props}
+      bg='brand.900'
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing='tighter'>
@@ -26,15 +22,7 @@ const Header: FC = ({ ...props }) => {
 
       <Navigation />
     
-      <IconButton
-        icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
-        variant='outline'
-        colorScheme='cyan'
-        aria-label='Color mode switcher'
-        onClick={toggleColorMode}
-      />
+      <DarkModeToggle />
     </Flex>
   )
 }
-
-export default Header

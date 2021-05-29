@@ -1,22 +1,21 @@
-import React, { FC } from 'react'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import matter from 'gray-matter'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { BlogProps, WebpackContext } from 'types/Blog'
 import { Heading, Image } from '@chakra-ui/react'
-import getSlugs from '@utils/getSlugs'
-import Layout from '@components/Layout/Layout'
-import MDX from '@components/MDX'
-import { FrontMatter, WebpackContext } from 'types/Blog'
+import { Layout } from '@components/Layout/Layout'
+import { MDX } from '@components/MDX'
+import { getSlugs } from '@utils/getSlugs'
 
 
-const BlogPost: FC<Props> = ({
-  siteTitle = 'Oskar Hulter\'s Web Dev Blog',
+export default function BlogPost({
+  pageTitle,
   frontmatter,
   markdownBody,
-}) => 
-  <>
+}: BlogProps) {
+  return <>
     {!frontmatter ?
       null :
-      <Layout pageTitle={`${frontmatter.title} | ${siteTitle} `}>
+      <Layout pageTitle={`${frontmatter.title} | ${pageTitle} `}>
         <article>
 
           <header>
@@ -34,15 +33,9 @@ const BlogPost: FC<Props> = ({
         </article>
       </Layout>}
   </>
-
-type Props = {
-  siteTitle: string
-  frontmatter: FrontMatter
-  markdownBody: string
 }
 
-
-export const getStaticProps: GetStaticProps = async ({ ...ctx }) => {
+export const getStaticProps: GetStaticProps<BlogProps> = async ({ ...ctx }) => {
   const { postname } = ctx.params
 
   const content = await import(`../../posts/${postname}.md`)
@@ -51,7 +44,7 @@ export const getStaticProps: GetStaticProps = async ({ ...ctx }) => {
 
   return {
     props: {
-      siteTitle: config.title,
+      pageTitle: config.title,
       frontmatter: data.data,
       markdownBody: data.content,
     },
@@ -70,5 +63,3 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: false, // so that 404s properly appear if something's not matching
   }
 }
-
-export default BlogPost

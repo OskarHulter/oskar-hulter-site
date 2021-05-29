@@ -1,39 +1,30 @@
-import React, { FC } from 'react'
 import { GetStaticProps } from 'next'
-import getPosts from '@utils/getPosts'
-import Layout from '@components/Layout/Layout'
-import PostList from '@components/PostList'
-import { Post, WebpackContext } from 'types/Blog'
+import { PostsProps, WebpackContext } from 'types/Blog'
 import { Heading } from '@chakra-ui/react'
+import { Layout } from '@components/Layout/Layout'
+import { PostList } from '@components/PostList'
+import { getPosts } from '@utils/getPosts'
 
 
-const BlogPage: FC<Props> = ({
+export default function BlogPage({
   posts,
-  title = 'Oskar Hulter\'s Blog',
-  description = 'Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.',
-}) => {
+  pageTitle = 'Oskar Hulter\'s Blog',
+  pageDescription = 'Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.',
+}: PostsProps) {
   return (
-    <>
-      <Layout pageTitle={title} description={description}>
-        <Heading as="h2" size="4xl">
+    <Layout pageTitle={pageTitle} pageDescription={pageDescription}>
+      <Heading as="h2" size="4xl">
           Web Dev Blog
-        </Heading>
+      </Heading>
 
-        <main>
-          <PostList posts={posts} />
-        </main>
-      </Layout>
-    </>
+      <main>
+        <PostList posts={posts} />
+      </main>
+    </Layout>
   )
 }
 
-type Props = {
-  posts: Post[]
-  title: string
-  description: string
-}
-
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<PostsProps> = async () => {
   const configData = await import('../siteconfig.json')
 
   const posts = ((context: WebpackContext) => {
@@ -43,10 +34,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       posts,
-      title: configData.default.title,
-      description: configData.default.description,
+      pageTitle: configData.default.title,
+      pageDescription: configData.default.description,
     },
   }
 }
-
-export default BlogPage 

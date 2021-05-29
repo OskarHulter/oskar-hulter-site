@@ -1,9 +1,9 @@
-import { FC } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
-import { extendTheme } from '@chakra-ui/react'
-import { mode } from '@chakra-ui/theme-tools'
 import '@fontsource/ibm-plex-mono/400.css'
 import '@fontsource/ibm-plex-sans/700.css'
+import { BaseProps } from 'types/Blog'
+import { ChakraProvider, extendTheme, withDefaultColorScheme } from '@chakra-ui/react'
+import { mode } from '@chakra-ui/theme-tools'
+
 
 const colors = {
   brand: {
@@ -11,6 +11,9 @@ const colors = {
     800: '#153e75',
     700: '#2a69ac',
   },
+  transparent: 'transparent',
+  black: '#000',
+  white: '#fff',
 }
 
 const mdx = {
@@ -53,11 +56,11 @@ const styles = {
     },
     'body': {
       fontFamily: 'body',
-      color: mode('gray.800', 'whiteAlpha.900')(props),
-      bg: mode('white', 'gray.800')(props),
+      color: mode('black', 'white')(props),
+      bg: mode('white', 'black')(props),
       lineHeight: 'base',
       a: {
-        color: '#00a395'
+        color: 'brand.700'
       }
     },
     'main': {
@@ -69,13 +72,13 @@ const styles = {
       direction: 'column',
       alignItems: 'center',
       lineHeight: '1.7',
-      bg: 'linear-gradient( to top, red  0%, green 100%)',
+      bg: 'linear-gradient( to top, brand.700  0%, brand.800)',
     },
     '*::placeholder': {
-      color: mode('gray.400', 'whiteAlpha.400')(props),
+      color: mode('brand.700', 'brand-800')(props),
     },
     '*, *::before, &::after': {
-      borderColor: mode('gray.200', 'whiteAlpha.300')(props),
+      borderColor: mode('brand.800', 'whiteAlpha.300')(props),
       wordWrap: 'break-word',
     },
     '.mdx-prose': mdx,
@@ -86,11 +89,23 @@ const config = {
   useSystemColorMode: true
 }
 
-const theme = extendTheme({ styles, colors, fonts, textStyles, config })
+const theme = extendTheme(
+  {
+    styles,
+    colors,
+    fonts,
+    textStyles,
+    config,
+  },
+  withDefaultColorScheme({ colorScheme: 'brand' })
+)
 
-const ThemeProvider: FC = ({ children }) =>
-  <ChakraProvider theme={theme}>
-    {children}
-  </ChakraProvider>
 
-export default ThemeProvider
+export function ThemeProvider({ children }:BaseProps) {
+
+  return (
+    <ChakraProvider theme={theme}>
+      {children}
+    </ChakraProvider>
+  )
+}

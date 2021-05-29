@@ -1,9 +1,7 @@
-import { FC } from 'react'
-import ThemeProvider from './ThemeProvider'
+import { BaseProps } from 'types/Blog'
+import { ThemeProvider } from '@components/Store/ThemeProvider'
 
-const Store: FC = ({ children }) =>
-  <ThemeProvider>
-    {children}
-  </ThemeProvider>
 
-export default Store
+export function Store({ children }:BaseProps) {
+  return <ThemeProvider>{children}</ThemeProvider>
+}

@@ -1,8 +1,8 @@
 import matter from 'gray-matter'
-import { DocumentFrontMatter, WebpackContext, Post, BlogContext } from 'types/Blog'
+import { BlogContext, DocumentFrontMatter, Post, WebpackContext } from 'types/Blog'
 
 
-const getPosts = (context: WebpackContext): Post[] => {
+export function getPosts(context: WebpackContext): Post[] {
   const keys = context.keys()
   const values = keys.map<BlogContext>(context)
 
@@ -18,5 +18,3 @@ const getPosts = (context: WebpackContext): Post[] => {
   })
   return data
 }
-
-export default getPosts

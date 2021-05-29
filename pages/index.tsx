@@ -1,53 +1,50 @@
-import React, { FC } from 'react'
 import { GetStaticProps } from 'next'
-import { Heading, StackDivider, VStack, Text, Link } from '@chakra-ui/react'
-import getPosts from '@utils/getPosts'
-import Layout from '@components/Layout/Layout'
-import PostList from '@components/PostList'
-import { Post, WebpackContext } from 'types/Blog'
+import { PostsProps, WebpackContext } from 'types/Blog'
+import { Heading, Link, StackDivider, Text, VStack } from '@chakra-ui/react'
+import { Layout } from '@components/Layout/Layout'
+import { PostList } from '@components/PostList'
+import { getPosts } from '@utils/getPosts'
 
 
-const Index: FC<Props> = ({
+export default function LandingPage({
   posts,
-  title = 'Oskar Hulter\'s Website',
-  description = 'Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.',
-}) => 
-  <Layout pageTitle={title} description={description}>
-    <section>
-      <VStack
-        divider={<StackDivider borderColor='gray.200' />}
-        spacing={2}
-        align='stretch'
-        scrollSnapType='y mandatory'
-        scrollSnapStop='always'
-      >
+  pageTitle = 'Oskar Hulter\'s Website',
+  pageDescription = 'Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.',
+}: PostsProps) {
 
-        <Heading as='h2' size='2xl'>Portfolio Blog Template</Heading>
+  return (
+    <Layout pageTitle={pageTitle} pageDescription={pageDescription}>
+      <section>
+        <VStack
+          divider={<StackDivider borderColor='brand.700' />}
+          spacing={2}
+          align='stretch'
+          scrollSnapType='y mandatory'
+          scrollSnapStop='always'
+        >
 
-        <PostList posts={posts} />
+          <Heading as='h2' size='2xl'>Portfolio Blog Template</Heading>
 
-        <Text>
-          This is a simple blog built with Next, easily deployable on{' '}
-          <Link href='https://url.netlify.com/r1j6ybSYU'>Netlify</Link>.
-        </Text>
-        <Text>
-          You can look at the repository for this project{' '}
-          <Link href='https://github.com/cassidoo/next-netlify-blog-starter'>
-            here
-          </Link>
-        </Text>
+          <PostList posts={posts} />
 
-      </VStack>
-    </section>
-  </Layout>
+          <Text>
+            This is a simple blog built with Next, easily deployable on{' '}
+            <Link href='https://url.netlify.com/r1j6ybSYU'>Netlify</Link>.
+          </Text>
+          <Text>
+            You can look at the repository for this project{' '}
+            <Link href='https://github.com/cassidoo/next-netlify-blog-starter'>
+              here
+            </Link>
+          </Text>
 
-type Props = {
-  posts: Post[]
-  title: string
-  description: string
+        </VStack>
+      </section>
+    </Layout>
+  )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<PostsProps> = async () => {
   const configData = await import('../siteconfig.json')
 
   const posts = ((context: WebpackContext) => {
@@ -57,10 +54,8 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       posts,
-      title: configData.default.title,
-      description: configData.default.description,
+      pageTitle: configData.default.title,
+      pageDescription: configData.default.description,
     },
   }
 }
-
-export default Index

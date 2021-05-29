@@ -1,17 +1,8 @@
-import React, { FC } from 'react'
+import {
+  AiFillCode, AiFillExperiment, AiFillGithub, AiFillHeart, AiFillHome, AiFillMail, AiFillPicture,
+  AiFillProfile, AiFillStar, AiFillTool, AiFillTrophy, AiFillTwitterCircle,
+} from 'react-icons/ai'
 import { SocialButton } from '@components/SocialButton'
-import { AiFillTwitterCircle } from 'react-icons/ai'
-import { AiFillGithub } from 'react-icons/ai'
-import { AiFillExperiment } from 'react-icons/ai'
-import { AiFillHeart } from 'react-icons/ai'
-import { AiFillHome } from 'react-icons/ai'
-import { AiFillMail } from 'react-icons/ai'
-import { AiFillCode } from 'react-icons/ai'
-import { AiFillPicture } from 'react-icons/ai'
-import { AiFillStar } from 'react-icons/ai'
-import { AiFillProfile } from 'react-icons/ai'
-import { AiFillTool} from 'react-icons/ai'
-import { AiFillTrophy} from 'react-icons/ai'
 
 
 const twitterIcon = {
@@ -70,16 +61,18 @@ const icons: Icon[] = [
   mailIcon
 ]
 
-const SocialButtons: FC = () => 
-  <>
+export function SocialButtons() {
+
+  return <>
     {icons.map((icon, key) =>
       <SocialButton icon={icon} key={key} />
     )}
-  </>
+  </> 
+}
+
+  
   
 export type Icon = {
   href: string
   icon: JSX.Element
 }
-
-export default SocialButtons

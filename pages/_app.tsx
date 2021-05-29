@@ -1,20 +1,23 @@
-import Store from '@components/Store/Store'
-import type { AppProps as NextAppProps } from 'next/app'
+import { AppProps } from 'next/dist/next-server/lib/router/router'
+import { Store } from '@components/Store/Store'
 
 
-const MyApp = ({ Component, pageProps }: AppProps<CustomPageProps>): JSX.Element =>
-  <Store>
-    <Component {...pageProps} />
-  </Store>
+export default function MyApp({ Component, pageProps }: AppProps){
 
+  return <Store><Component {...pageProps} /></Store>
+}
+  
 // modified version - allows for custom pageProps type, falling back to 'any'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AppProps<P = any> = {
-  pageProps: P
-} & Omit<NextAppProps<P>, 'pageProps'>
 
+/*
+AppProps<CustomPageProps>
 type CustomPageProps = {
 
 }
 
-export default MyApp
+type AppProps<P = any> = {
+  pageProps: P
+} & Omit<NextAppProps<P>, 'pageProps'>
+
+*/
