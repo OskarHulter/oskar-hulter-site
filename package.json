@@ -39,11 +39,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.14.4",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/react": "^6.2.9",
     "@testing-library/cypress": "^7.0.6",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.25.0",
