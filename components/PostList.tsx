@@ -14,7 +14,7 @@ export function PostList({ posts }: PostsProps) {
         <LinkBox as='article' key={post.slug}>
           <ListItem> 
 
-            <ListIcon icon={AiFillCode} color='brand.700' />
+            <ListIcon as={AiFillCode} color='brand.700' />
 
             {post.frontmatter.date}: {' '}
             <Link href={{ pathname: `/post/${post.slug}` }}>
