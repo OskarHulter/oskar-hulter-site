@@ -1,17 +1,24 @@
+import { ButtonProps } from 'types'
 import { IconButton } from '@chakra-ui/button'
-import { Icon } from '@components/SocialButtons'
 
 
-export function SocialButton({ icon }: { icon: Icon}) {
+export function SocialButton({
+  text = '',
+  label = 'social-media-link',
+  href = '/',
+  icon, 
+}: ButtonProps) {
 
   return (
     <IconButton
-      href={icon.href}
-      aria-label='social-media-link'
+      href={href}
+      aria-label={label}
       target="_blank"
       rel="noreferrer"
-      icon={icon.icon}
-    />
+      icon={icon}
+    >
+      {text}
+    </IconButton>
   )
 }
 

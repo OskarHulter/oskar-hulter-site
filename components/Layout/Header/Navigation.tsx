@@ -1,12 +1,46 @@
-import Link from 'next/link'
+import { AiFillCode, AiFillHome, AiFillMail, AiFillStar } from 'react-icons/ai'
+import { ButtonProps } from 'types'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Box, Button, Stack, useDisclosure } from '@chakra-ui/react'
+import { MenuItem } from './MenuItem'
 
+
+const aboutButton: ButtonProps = {
+  text: 'About',
+  label: 'About Page',
+  href: '/about',
+  icon: <AiFillStar />,
+}
+const homeButton = {
+  text: 'Home',
+  label: 'Home link',
+  href: '/',
+  icon: <AiFillHome/>
+}
+const blogButton: ButtonProps = {
+  text: 'Blog',
+  label: 'Blog Page',
+  href: '/blog',
+  icon: <AiFillCode />,
+}
+const contactButton: ButtonProps = {
+  text: 'Contact',
+  label: 'Contact Information',
+  href: '/contact',
+  icon: <AiFillMail />,
+}
+
+const navMenuButtons: ButtonProps[] = [
+  homeButton,
+  blogButton,
+  aboutButton,
+  contactButton
+]
 
 export function Navigation() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const handleToggle = () => (isOpen ? onClose() : onOpen())
-
+  const handleToggle = () => isOpen ? onClose() : onOpen()
+  
   return <>
     <Stack
       as='nav'
@@ -17,15 +51,17 @@ export function Navigation() {
       flexGrow={1}
       mt={{ base: 4, md: 0 }}
     >
-      <Link href='/'>
-        <a>Home</a>
-      </Link>
-      <Link href='/blog'>
-        <a>Blog</a>
-      </Link>
-      <Link href='/about'>
-        <a>About</a>
-      </Link>
+      
+      {navMenuButtons.map(({ text, label, href, icon }, key) =>
+        <MenuItem
+          text={text}
+          label={label}
+          href={href}
+          icon={icon}
+          key={key}
+        />
+      )}
+
     </Stack>
 
     <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>

@@ -7,7 +7,11 @@
       ],
       "@utils/*": [
         "utils/*"
+      ],
+      "@data/*": [
+        "data/*"
       ]
+
     },
     "target": "es5",
     "lib": [
@@ -27,7 +31,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
-    "types": ["cypress", "@testing-library/cypress"]
+    "types": [
+      "cypress", 
+      "@testing-library/cypress",
+      "webpack-env",
+      "node"
+    ]
   },
   "include": [
     "next-env.d.ts",

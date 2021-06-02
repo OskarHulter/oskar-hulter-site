@@ -22,27 +22,4 @@ export type Post = {
   markdownBody?: string
 }
 
-export type RestProps = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [_: string]: any
-}
-
-export type BaseProps = {
-  children?: React.ReactNode
-} & Partial<RestProps>
-
-export type PageProps = {
-  pageTitle?: string
-  pageDescription?: string
-} & Partial<BaseProps>
-
-export type PostsProps = {
-  posts: Post[]
-} & Partial<PageProps>
-
-export type BlogProps = {
-  frontmatter?: FrontMatter
-  markdownBody: string
-} & Partial<PageProps>
-
 export type WebpackContext = __WebpackModuleApi.RequireContext

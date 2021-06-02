@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
-import { PostsProps, WebpackContext } from 'types/Blog'
-import { Heading, Link, StackDivider, Text, VStack } from '@chakra-ui/react'
+import { PostsProps, WebpackContext } from 'types'
+import { Heading, Image, Img, Link, StackDivider, Text, VStack } from '@chakra-ui/react'
 import { Layout } from '@components/Layout/Layout'
 import { PostList } from '@components/PostList'
 import { getPosts } from '@utils/getPosts'
@@ -14,32 +14,43 @@ export default function LandingPage({
 
   return (
     <Layout pageTitle={pageTitle} pageDescription={pageDescription}>
-      <section>
-        <VStack
-          divider={<StackDivider borderColor='brand.700' />}
-          spacing={2}
-          align='stretch'
-          scrollSnapType='y mandatory'
-          scrollSnapStop='always'
-        >
+      <VStack
+        divider={<StackDivider borderColor='brand.700' />}
+        spacing={2}
+        align='stretch'
+        as='section'
+      >
+        <Img />
+        <Image
+          boxSize="150px"
+          objectFit="cover"
+          src="https://bit.ly/dan-abramov"
+          alt="Dan Abramov"
+        />
 
-          <Heading as='h2' size='2xl'>Portfolio Blog Template</Heading>
+        <Heading as='h2' size='2xl'>Personal Site Template using next & Chakra Ui</Heading>
 
-          <PostList posts={posts} />
+        <PostList posts={posts} />
 
-          <Text>
+        <Text>
             This is a simple blog built with Next, easily deployable on{' '}
-            <Link href='https://url.netlify.com/r1j6ybSYU'>Netlify</Link>.
-          </Text>
-          <Text>
+          <Link href='https://url.netlify.com/r1j6ybSYU'>Netlify</Link>.
+        </Text>
+        <Text>
             You can look at the repository for this project{' '}
-            <Link href='https://github.com/cassidoo/next-netlify-blog-starter'>
+          <Link href='https://github.com/OskarHulter/next-netlify-blog-starter'>
               here
-            </Link>
-          </Text>
+          </Link>
+        </Text>
 
-        </VStack>
-      </section>
+        <Text>
+            This template is a fork of Cassidoo&apos;s next-netlify-blog-starter, big thanks to Cassidoo! Check out the repo {' '}
+          <Link href='https://github.com/cassidoo/next-netlify-blog-starter'>
+              here
+          </Link>
+        </Text>
+
+      </VStack>
     </Layout>
   )
 }

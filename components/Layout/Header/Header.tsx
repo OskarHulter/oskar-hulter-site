@@ -11,8 +11,10 @@ export function Header() {
       align='center'
       justify='space-between'
       wrap='wrap'
-      padding={6}
-      bg='brand.900'
+      p={6}
+      mb={8}
+      bg={['primary.500', 'primary.500', 'transparent', 'transparent']}
+      color={['white', 'white', 'primary.700', 'primary.700']}
     >
       <Flex align='center' mr={5}>
         <Heading as='h1' size='lg' letterSpacing='tighter'>

@@ -1,7 +1,9 @@
-import { BaseProps } from 'types/Blog'
+import { BaseProps } from 'types'
 import { ThemeProvider } from '@components/Store/ThemeProvider'
 
 
 export function Store({ children }:BaseProps) {
-  return <ThemeProvider>{children}</ThemeProvider>
+  return (
+    <ThemeProvider>{children}</ThemeProvider>
+  )
 }

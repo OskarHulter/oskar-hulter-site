@@ -1,14 +1,15 @@
 import ReactMarkdown from 'react-markdown'
-import { BlogProps } from 'types/Blog'
+import { BlogProps } from 'types'
+import { Flex } from '@chakra-ui/react'
 
 
 export function MDX({ markdownBody, ...props}:BlogProps) {
 
   return (
-    <div className='mdx-prose' {...props} >
+    <Flex direction='column' {...props} >
       <ReactMarkdown>
         {markdownBody}
       </ReactMarkdown>
-    </div>
+    </Flex>
   )
 }

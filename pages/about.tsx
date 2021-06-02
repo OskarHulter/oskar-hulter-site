@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { PageProps } from 'types/Blog'
+import { PageProps } from 'types'
 import { Heading, Text } from '@chakra-ui/layout'
 import { Layout } from '@components/Layout/Layout'
 

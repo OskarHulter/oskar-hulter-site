@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import { PageProps } from 'types/Blog'
+import { PageProps } from 'types'
 import { VStack } from '@chakra-ui/react'
+import { AnimateIn } from '@components/Layout/AnimateIn'
 import { Footer } from '@components/Layout/Footer'
 import { Header } from '@components/Layout/Header/Header'
 
@@ -11,7 +12,7 @@ export function Layout({
   children,
 }: PageProps) {
 
-  return<>
+  return <>
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta charSet='utf-8' />
@@ -22,17 +23,21 @@ export function Layout({
       height='100vh'
       align='stretch'
       overflowY='scroll'
-      scrollSnapType='y mandatory'
-      scrollSnapStop='always'
-      scrollSnapAlign='center'
+      maxW={[
+        'auto',    // 0-30em
+        'auto',    // 30em-48em
+        'auto',    // 48em-62em
+        '1200px',  // 62em+
+      ]}
     >
 
       <Header />
-
-      <main>
-        {children}
-      </main>
-
+      <AnimateIn>
+        <main>
+          {children}
+        </main>
+      </AnimateIn>
+      
       <Footer />
 
     </VStack>
