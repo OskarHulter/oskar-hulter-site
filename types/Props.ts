@@ -1,6 +1,3 @@
-import { FrontMatter, Post } from 'types'
-
-
 export type RestProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [_: string]: any
@@ -15,15 +12,6 @@ export type PageProps = {
   pageDescription?: string
 } & Partial<BaseProps>
 
-
-export type PostsProps = {
-  posts: Post[]
-} & Partial<PageProps>
-
-export type BlogProps = {
-  frontmatter?: FrontMatter
-  markdownBody: string
-} & Partial<PageProps>
 
 export type ButtonProps = {
   text: string

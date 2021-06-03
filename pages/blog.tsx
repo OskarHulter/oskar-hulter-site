@@ -1,6 +1,5 @@
 import { GetStaticProps } from 'next'
 import { PostsProps, WebpackContext } from 'types'
-import { Heading, Text } from '@chakra-ui/react'
 import { Layout } from '@components/Layout/Layout'
 import { PostList } from '@components/PostList'
 import { getPosts } from '@utils/getPosts'
@@ -13,14 +12,9 @@ export default function BlogPage({
 }: PostsProps) {
   return (
     <Layout pageTitle={pageTitle} pageDescription={pageDescription}>
-      <Heading as="h2">
-          Welcome to my blog
-      </Heading>
-      <Text>
-        Fullstack Web dev blog covering topics like JS, react, architecture, api-design and awesome packages.
-      </Text>
-
+      
       <PostList posts={posts} />
+
     </Layout>
   )
 }

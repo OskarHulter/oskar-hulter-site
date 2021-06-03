@@ -1,6 +1,6 @@
 import '@fontsource/ibm-plex-mono/400.css'
 import '@fontsource/ibm-plex-sans/700.css'
-import { extendTheme, ThemeConfig, withDefaultColorScheme } from '@chakra-ui/react'
+import { extendTheme, textDecoration, ThemeConfig, withDefaultColorScheme } from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
 
@@ -51,7 +51,8 @@ const styles = {
       bg: mode('white', 'black')(props),
       lineHeight: 'base',
       a: {
-        color: 'brand.700'
+        color: 'brand.700',
+        textDecoration:'none', //set hover none
       }
     },
     'section':{
