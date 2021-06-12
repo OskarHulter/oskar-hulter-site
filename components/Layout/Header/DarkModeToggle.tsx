@@ -9,7 +9,9 @@ export function DarkModeToggle () {
   return (
     <IconButton
       icon={colorMode === 'light' ? <SunIcon /> : <MoonIcon />}
-      variant='outline'
+      colorScheme='teal'
+      variant='solid'
+      borderRadius='full'
       aria-label='Color mode switcher'
       onClick={toggleColorMode}
     />

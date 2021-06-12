@@ -1,5 +1,5 @@
 import matter from 'gray-matter'
-import { BlogContext, DocumentFrontMatter, Post, WebpackContext } from 'types'
+import { BlogContext, DocumentFrontMatter, Post, WebpackContext } from '@types'
 
 
 export function getPosts(context: WebpackContext): Post[] {

@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
-import { PostsProps, WebpackContext } from 'types'
 import { Layout } from '@components/Layout/Layout'
 import { PostList } from '@components/PostList'
+import { PostsProps, WebpackContext } from '@types'
 import { getPosts } from '@utils/getPosts'
 
 

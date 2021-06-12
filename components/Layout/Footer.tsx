@@ -1,22 +1,29 @@
-import { Flex, Heading } from '@chakra-ui/react'
+import { Flex, Image, Text } from '@chakra-ui/react'
 
 
 export function Footer() {
 
   return (
     <Flex
+      w='full'
+      h=''
       as="footer"
       align="center"
-      justify="space-between"
-      wrap="wrap"
-      padding={6}
-      bg="brand.700"
+      justify='center'
+      bg="transparent"
+      position='absolute'
+      left='0'
+      bottom='0'
     >
-      <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-        Built with <img src="/netliheart.svg" alt="Netlify Heart" /> for you
-        </Heading>
-      </Flex>
+      <Text size="md" letterSpacing={'tighter'}>
+        Built with
+        <Image
+          src="/netliheart.svg"
+          alt="Netlify Heart"
+          maxH='30px'
+        />
+        &copy; Oskar Hulter
+      </Text>
     </Flex>
   )
 }

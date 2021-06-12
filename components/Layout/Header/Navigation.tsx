@@ -1,68 +1,44 @@
-import { AiFillCode, AiFillHome, AiFillMail, AiFillStar } from 'react-icons/ai'
-import { ButtonProps } from 'types'
+
+import link from 'next/link'
 import { HamburgerIcon } from '@chakra-ui/icons'
-import { Box, Button, Stack, useDisclosure } from '@chakra-ui/react'
-import { MenuItem } from './MenuItem'
+import { Box, Button, Link, useDisclosure } from '@chakra-ui/react'
+import { navMenuButtons } from '@constants'
+import { ButtonProps } from '@types'
 
 
-const aboutButton: ButtonProps = {
-  text: 'About',
-  label: 'About Page',
-  href: '/about',
-  icon: <AiFillStar />,
+function NavLink({
+  text,
+  label,
+  href = '/',
+}: ButtonProps) {
+  return (
+    <Link
+      px={2}
+      py={1}
+      rounded={'md'}
+      href={href}
+      as={link}
+      aria-label={label}
+    >
+      {text}
+    </Link>
+  )
 }
-const homeButton = {
-  text: 'Home',
-  label: 'Home link',
-  href: '/',
-  icon: <AiFillHome/>
-}
-const blogButton: ButtonProps = {
-  text: 'Blog',
-  label: 'Blog Page',
-  href: '/blog',
-  icon: <AiFillCode />,
-}
-const contactButton: ButtonProps = {
-  text: 'Contact',
-  label: 'Contact Information',
-  href: '/contact',
-  icon: <AiFillMail />,
-}
-
-const navMenuButtons: ButtonProps[] = [
-  homeButton,
-  blogButton,
-  aboutButton,
-  contactButton
-]
 
 export function Navigation() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const handleToggle = () => isOpen ? onClose() : onOpen()
   
   return <>
-    <Stack
-      as='nav'
-      direction={{ base: 'column', md: 'row' }}
-      display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
-      width={{ base: 'full', md: 'auto' }}
-      alignItems='center'
-      flexGrow={1}
-      mt={{ base: 4, md: 0 }}
-    >
       
-      {navMenuButtons.map(({ text, label, href, icon }, key) =>
-        <MenuItem
-          text={text}
-          label={label}
-          href={href}
-          icon={icon}
-          key={key}
-        />
-      )}
-
-    </Stack>
+    {navMenuButtons.map(({ text, label, href }, key) =>
+      <NavLink
+        text={text}
+        label={label}
+        href={href}
+        key={key}
+      />
+    )}
 
     <Box display={{ base: 'block', md: 'none' }} onClick={handleToggle}>
       <HamburgerIcon />
@@ -79,5 +55,6 @@ export function Navigation() {
         Contact
       </Button>
     </Box>
+
   </>
 }

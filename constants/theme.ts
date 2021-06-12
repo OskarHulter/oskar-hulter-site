@@ -1,6 +1,8 @@
 import '@fontsource/ibm-plex-mono/400.css'
 import '@fontsource/ibm-plex-sans/700.css'
-import { extendTheme, textDecoration, ThemeConfig, withDefaultColorScheme } from '@chakra-ui/react'
+import {
+  extendTheme, ThemeConfig, useBreakpointValue, useColorModeValue, withDefaultColorScheme,
+} from '@chakra-ui/react'
 import { mode } from '@chakra-ui/theme-tools'
 
 
@@ -50,9 +52,22 @@ const styles = {
       color: mode('black', 'white')(props),
       bg: mode('white', 'black')(props),
       lineHeight: 'base',
-      a: {
+      'a, a::hover': {
         color: 'brand.700',
-        textDecoration:'none', //set hover none
+        textDecoration: 'none',
+        bg: useColorModeValue('primary.200', 'primary.700')
+      },
+      'p': {
+        color: 'white',
+        fontWeight: '700',
+        lineHeight: '1.2',
+        fontSize: useBreakpointValue({ base: '3xl', md: '4xl' })
+      },
+      'button': {
+        cursor: 'pointer'
+      },
+      'h1': {
+        textShadow: '0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1)'
       }
     },
     'section':{

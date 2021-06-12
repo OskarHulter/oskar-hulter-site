@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { ButtonProps } from 'types'
 import { IconButton, LinkBox, LinkOverlay } from '@chakra-ui/react'
+import { ButtonProps } from '@types'
 
 
 export function MenuItem({
@@ -20,8 +20,7 @@ export function MenuItem({
 
   return (
     <LinkBox>
-      <IconButton icon={icon} aria-label={label} isActive={isActive}>
-
+      <IconButton icon={icon as JSX.Element} aria-label={label} isActive={isActive}>
         <Link href={href}>
           <LinkOverlay>{text}</LinkOverlay>
         </Link>
@@ -29,3 +28,5 @@ export function MenuItem({
     </ LinkBox>
   ) 
 }
+
+

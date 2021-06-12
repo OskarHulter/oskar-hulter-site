@@ -1,5 +1,5 @@
-import { ButtonProps } from 'types'
 import { IconButton } from '@chakra-ui/button'
+import { ButtonProps } from '@types'
 
 
 export function SocialButton({

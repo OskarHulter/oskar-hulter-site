@@ -8,10 +8,12 @@
       "@utils/*": [
         "utils/*"
       ],
-      "@data/*": [
-        "data/*"
+      "@constants": [
+        "constants/index.ts"
+      ],
+      "@types": [
+        "types/index.ts"
       ]
-
     },
     "target": "es5",
     "lib": [

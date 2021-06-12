@@ -1,10 +1,9 @@
-import { BlogTags } from 'types'
 import { HStack, Tag } from '@chakra-ui/react'
 
 
-export function BlogTags({tags, marginTop}: BlogTags) {
+export function BlogTags({ tags }: {tags: string[]}) {
   return (
-    <HStack spacing={2} marginTop={marginTop}>
+    <HStack spacing={2} marginTop={3}>
       {tags.map(tag => 
         <Tag
           size={'md'}

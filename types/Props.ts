@@ -1,3 +1,6 @@
+import { IconType } from 'react-icons'
+
+
 export type RestProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [_: string]: any
@@ -17,5 +20,5 @@ export type ButtonProps = {
   text: string
   label: string
   href: string
-  icon: JSX.Element
+  icon?: IconType | JSX.Element
 }

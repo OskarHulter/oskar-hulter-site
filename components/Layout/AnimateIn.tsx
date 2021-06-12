@@ -1,5 +1,5 @@
-import { BaseProps } from 'types'
 import { Fade } from '@chakra-ui/react'
+import { BaseProps } from '@types'
 
 
 export function AnimateIn({ children }: BaseProps) {

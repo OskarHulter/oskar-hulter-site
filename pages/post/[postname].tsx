@@ -1,9 +1,9 @@
 import matter from 'gray-matter'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { BlogProps, WebpackContext } from 'types'
 import { Heading, Image } from '@chakra-ui/react'
 import { Layout } from '@components/Layout/Layout'
 import { MDX } from '@components/MDX'
+import { BlogProps, WebpackContext } from '@types'
 import { getSlugs } from '@utils/getSlugs'
 
 

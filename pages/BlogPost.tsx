@@ -1,8 +1,10 @@
 import Link from 'next/link'
-import { PostProps } from 'types'
+import { BlogAuthor } from 'pages/ArticlesList'
 import {
   Box, Divider, Heading, Image, Text, useColorModeValue, VStack, Wrap, WrapItem,
 } from '@chakra-ui/react'
+import { BlogTags } from '@components/blog/Tags'
+import { PostProps } from '@types'
 
 
 export function OldPost({ post }: PostProps) {

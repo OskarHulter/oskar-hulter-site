@@ -1,5 +1,4 @@
-import { PageProps } from 'types'
-import { SpaceProps } from '@chakra-ui/react'
+import { PageProps } from '@types'
 
 
 export type BlogContext = {
@@ -10,11 +9,6 @@ export type BlogContext = {
 export type BlogAuthorProps = {
   date: Date
   name: string
-}
-
-export type BlogTags = {
-  tags: Array<string>
-  marginTop?: SpaceProps['marginTop']
 }
 
 export type FrontMatter = {

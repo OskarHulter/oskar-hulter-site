@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown'
-import { BlogProps } from 'types'
 import { Flex } from '@chakra-ui/react'
+import { BlogProps } from '@types'
 
 
 export function MDX({ markdownBody, ...props}:BlogProps) {

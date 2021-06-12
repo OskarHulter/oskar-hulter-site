@@ -1,4 +1,4 @@
-import { WebpackContext } from 'types'
+import { WebpackContext } from '@types'
 
 
 export function getSlugs (context: WebpackContext): string[] {

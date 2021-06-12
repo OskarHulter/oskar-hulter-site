@@ -1,44 +1,30 @@
-
-import { BaseProps } from 'types'
-import { AddIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {
-  Avatar, Box, Button, Flex, Heading, HStack, IconButton, Link, Menu, MenuButton, MenuDivider,
-  MenuItem, MenuList, Stack, useColorModeValue, useDisclosure,
+  Avatar, Box, Button, Flex, IconButton, Menu, MenuButton, Stack, useDisclosure,
 } from '@chakra-ui/react'
 import { DarkModeToggle } from '@components/Layout/Header/DarkModeToggle'
+import { navMenuButtons } from '@constants'
+import { MenuItem } from './MenuItem'
 
 
-const Links = ['Blog', 'About', 'Contact']
-
-function NavLink({ children }: BaseProps) {
-  return (
-    <Link
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('primary.200', 'primary.700'),
-      }}
-      href={'#'}>
-      {children}
-    </Link>
-  )
-}
 export function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
       <Box
-        bg={useColorModeValue('primary.100', 'primary.900')}
+        w='full'
+        bg='transparent'
         px={4}
         as='header'
+        position='absolute'
+        left='0'
+        top='0'
       >
         <Flex
-          h={16}
           alignItems={'center'}
           justifyContent={'space-between'}
+          bg='transparent'
         >
           <IconButton
             size={'md'}
@@ -47,34 +33,35 @@ export function Header() {
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={'center'}>
-            <Heading as='h1' size='lg' letterSpacing='tighter'>
-          Oskar Hulter Web Dev
-            </Heading>
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map(link => 
-                <NavLink key={link}>{link}</NavLink>
-              )}
-            </HStack>
-          </HStack>
+
+          <Stack
+            as='nav'
+            direction={{ base: 'column', md: 'row' }}
+            display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
+            width={{ base: 'full', md: 'auto' }}
+            alignItems='center'
+            flexGrow={1}
+            mt={{ base: 4, md: 0 }}
+          >
+            {navMenuButtons.map(({ text, label, href }, key) =>
+              <MenuItem
+                text={text}
+                label={label}
+                href={href}
+                key={key}
+              />
+            )}
+          </Stack>
           <Flex alignItems={'center'}>
-            <Button
-              variant={'solid'}
-              colorScheme={'teal'}
-              size={'sm'}
-              mr={4}
-              leftIcon={<AddIcon />}>
-             Contact 
-            </Button>
+
+
             <Menu>
+              <DarkModeToggle />
               <MenuButton
                 as={Button}
                 rounded={'full'}
                 variant={'link'}
-                cursor={'pointer'}>
+              >
                 <Avatar
                   size={'sm'}
                   src={
@@ -82,30 +69,13 @@ export function Header() {
                   }
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>Blog</MenuItem>
-                <MenuItem>About2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Contact</MenuItem>
-              </MenuList>
             </Menu>
           </Flex>
         </Flex>
-
-        {isOpen ? 
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map(link => 
-                <NavLink key={link}>{link}</NavLink>
-              )}
-            </Stack>
-          </Box>
-          : null}
+       
       </Box>
 
-      <Box p={4}>
-        <DarkModeToggle />
-      </Box>
+
     </>
   )
 }

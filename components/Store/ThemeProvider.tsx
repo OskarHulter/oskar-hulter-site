@@ -1,6 +1,6 @@
-import { BaseProps } from 'types'
 import { ChakraProvider } from '@chakra-ui/react'
-import { theme } from '@data/theme'
+import { theme } from '@constants'
+import { BaseProps } from '@types'
 
 
 export function ThemeProvider({ children }:BaseProps) {

@@ -1,13 +1,13 @@
-import { PostsProps } from 'types'
 import {
-  Box, Container, Divider, Heading, HStack, Image, Link, SpaceProps, Tag, Text, useColorModeValue,
-  VStack, Wrap, WrapItem,
+  Box, Container, Divider, Heading, HStack, Image, Link, Tag, Text, useColorModeValue, VStack, Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
+import { PostsProps } from '@types'
 
 
 interface BlogAuthorProps {
-  date: Date;
-  name: string;
+  date: Date
+  name: string
 }
 
 export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
@@ -26,21 +26,15 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
   )
 }
 
-interface IBlogTags {
-  tags: Array<string>;
-  marginTop?: SpaceProps['marginTop'];
-}
 
-const BlogTags: React.FC<IBlogTags> = (props) => {
+export function BlogTags({ tags }: { tags:string[]}) {
   return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags.map((tag) => {
-        return (
-          <Tag size={'md'} variant='solid' colorScheme='orange' key={tag}>
-            {tag}
-          </Tag>
-        )
-      })}
+    <HStack spacing={2} marginTop={3}>
+      {tags.map(tag => 
+        <Tag size={'md'} variant='solid' colorScheme='orange' key={tag}>
+          {tag}
+        </Tag>
+      )}
     </HStack>
   )
 }
@@ -74,7 +68,7 @@ export default function ArticleList({ posts }: PostsProps) {
                 zIndex='2'
                 marginLeft={{ base: '0', sm: '5%' }}
                 marginTop='5%'>
-                <Link href={{ pathname: `/post/${post.slug}` }}>
+                <Link href={`/post/${post.slug}`}>
                   <Image
                     borderRadius='lg'
                     src={
@@ -107,7 +101,7 @@ export default function ArticleList({ posts }: PostsProps) {
             marginTop={{ base: '3', sm: '0' }}>
             <BlogTags tags={['Engineering', 'Product']} />
             <Heading marginTop='1'>
-              <Link href={{ pathname: `/post/${post.slug}` }}>
+              <Link href={`/post/${post.slug}`}>
                 {post?.frontmatter?.title}
               </Link>
             </Heading>
@@ -151,7 +145,7 @@ export default function ArticleList({ posts }: PostsProps) {
                 />
               </Link>
             </Box>
-            <BlogTags tags={['Engineering', 'Product']} marginTop='3' />
+            <BlogTags tags={['Engineering', 'Product']} />
             <Heading fontSize='xl' marginTop='2'>
               <Link textDecoration='none' _hover={{ textDecoration: 'none' }}>
                 hej
@@ -159,7 +153,7 @@ export default function ArticleList({ posts }: PostsProps) {
             </Heading>
             <Text as='p' fontSize='md' marginTop='2'>
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the industry standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </Text>
