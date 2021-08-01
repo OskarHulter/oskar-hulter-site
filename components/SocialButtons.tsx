@@ -5,12 +5,12 @@ import { socialButtons } from '@constants'
 export function SocialButtons() {
 
   return <>
-    {socialButtons.map(({ text, label, href, icon }, key) =>
+    {socialButtons.map(({ text, label, href, Icon }, key) =>
       <SocialButton
         text={text}
         label={label}
         href={href}
-        icon={icon}
+        Icon={Icon}
         key={key}
       />
     )}

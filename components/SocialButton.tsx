@@ -6,7 +6,7 @@ export function SocialButton({
   text = '',
   label = 'social-media-link',
   href = '/',
-  icon, 
+  Icon, 
 }: ButtonProps) {
 
   return (
@@ -15,7 +15,7 @@ export function SocialButton({
       aria-label={label}
       target="_blank"
       rel="noreferrer"
-      icon={icon}
+      icon={<Icon />}
     >
       {text}
     </IconButton>

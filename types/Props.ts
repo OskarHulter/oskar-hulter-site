@@ -1,4 +1,4 @@
-import { IconType } from 'react-icons'
+import { IconType } from 'react-icons/lib'
 
 
 export type RestProps = {
@@ -20,5 +20,5 @@ export type ButtonProps = {
   text: string
   label: string
   href: string
-  icon?: IconType | JSX.Element
+  Icon?: IconType & React.ReactElement<any, string | React.JSXElementConstructor<any>>
 }

@@ -9,7 +9,7 @@ export function MenuItem({
   text,
   label,
   href = '/',
-  icon,
+  Icon,
 }: ButtonProps) {
   const [isActive, setIsActive] = useState(false)
   const router = useRouter()
@@ -20,7 +20,7 @@ export function MenuItem({
 
   return (
     <LinkBox>
-      <IconButton icon={icon as JSX.Element} aria-label={label} isActive={isActive}>
+      <IconButton icon={<Icon/>} aria-label={label} isActive={isActive}>
         <Link href={href}>
           <LinkOverlay>{text}</LinkOverlay>
         </Link>

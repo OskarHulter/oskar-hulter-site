@@ -14,7 +14,7 @@ export function OldPost({ post }: PostProps) {
       <Text as='p' fontSize='lg'>
       </Text>
       <Text as='p' fontSize='lg'>
-        lit.
+        {post.frontmatter}
       </Text>
       <Text as='p' fontSize='lg'>
         Lorem
@@ -141,7 +141,7 @@ export function PostItem({ post }: PostProps) {
                 />
               </Link>
             </Box>
-            <BlogTags tags={['Engineering', 'Product']} marginTop='3' />
+            <BlogTags tags={['Engineering', 'Product']} />
             <Heading fontSize='xl' marginTop='2'>
               <Link href={{ pathname: `/post/${post.slug}` }}>
                 {post?.frontmatter?.title}
