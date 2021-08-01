@@ -41,6 +41,10 @@ export function BlogTags({ tags }: { tags:string[]}) {
 
 
 export default function ArticleList({ posts }: PostsProps) {
+
+  const bgGradient = useColorModeValue( 'radial(orange.600 1px, transparent 1px)', 'radial(orange.300 1px, transparent 1px)')
+  const color = useColorModeValue('gray.700', 'gray.200')
+
   return (
     <Container maxW={'7xl'} p='12'>
       <Heading as='h2'>
@@ -81,10 +85,7 @@ export default function ArticleList({ posts }: PostsProps) {
               </Box>
               <Box zIndex='1' width='100%' position='absolute' height='100%'>
                 <Box
-                  bgGradient={useColorModeValue(
-                    'radial(orange.600 1px, transparent 1px)',
-                    'radial(orange.300 1px, transparent 1px)'
-                  )}
+                  bgGradient={bgGradient}
                   backgroundSize='20px 20px'
                   opacity='0.4'
                   height='100%'
@@ -108,7 +109,7 @@ export default function ArticleList({ posts }: PostsProps) {
             <Text
               as='p'
               marginTop='2'
-              color={useColorModeValue('gray.700', 'gray.200')}
+              color={color}
               fontSize='lg'
               isTruncated={true}
             >
