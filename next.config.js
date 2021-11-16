@@ -1,3 +1,4 @@
+/*
 module.exports = {
   target: 'serverless',
   webpack: function (config) {
@@ -8,3 +9,11 @@ module.exports = {
     return config
   },
 }
+*/
+
+// next.config.js
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withNextra = require('nextra')({
+  unstable_staticImage: true
+})
+module.exports = withNextra()
